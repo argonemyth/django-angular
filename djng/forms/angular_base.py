@@ -14,13 +14,13 @@ import warnings
 from django import VERSION as DJANGO_VERSION
 from django.forms import forms
 from django.http import QueryDict
-from django.utils import six
+import six
 try:
     from importlib import import_module
 except ImportError:
     from django.utils.importlib import import_module
 from django.utils.html import format_html, format_html_join, escape, conditional_escape
-from django.utils.encoding import python_2_unicode_compatible, force_text
+from django.utils.encoding import force_text
 from django.utils.module_loading import import_string
 from django.utils.safestring import mark_safe, SafeText, SafeData
 from django.core.exceptions import ValidationError, ImproperlyConfigured
@@ -35,7 +35,7 @@ class SafeTuple(SafeData, tuple):
     """
 
 
-@python_2_unicode_compatible
+@six.python_2_unicode_compatible
 class TupleErrorList(UserList, list):
     """
     A list of errors, which in contrast to Django's ErrorList, can contain a tuple for each item.

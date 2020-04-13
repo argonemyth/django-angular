@@ -24,7 +24,7 @@ this can be achieved automatically and on the fly
 .. code-block:: python
 
 	from django import forms
-	from django.utils import six
+	import six
 	from djng.forms import fields, NgDeclarativeFieldsMetaclass, NgFormValidationMixin
 
 	class MyValidatedForm(six.with_metaclass(NgDeclarativeFieldsMetaclass, NgFormValidationMixin, forms.Form)):
@@ -40,7 +40,7 @@ can be rewritten in a simpler way, by using the convenience class ``NgForm`` as 
 .. code-block:: python
 
 	from djng.forms import NgFormValidationMixin, NgForm
-	
+
 	class MyValidatedForm(NgFormValidationMixin, NgForm):
 	    # members as above
 
@@ -50,11 +50,11 @@ If the Form shall inherit from Django's ``forms.ModelForm``, use the convenience
 .. code-block:: python
 
 	from djng.forms import NgFormValidationMixin, NgModelForm
-	
+
 	class MyValidatedForm(NgFormValidationMixin, NgModelForm):
 	    class Meta:
 	         model = Article
-	
+
 	    # fields as usual
 
 Each page under control of AngularJS requires a unique form name, otherwise the AngularJS's form
@@ -127,7 +127,7 @@ rendered in templates using a special field tag. Say, the form contains
 
 	from django import forms
 	from djng.forms import fields, NgFormValidationMixin
-	
+
 	class MyValidatedForm(NgFormValidationMixin, forms.Form):
 		email = fields.EmailField(label='Email')
 
@@ -173,7 +173,7 @@ On class declaration inherit first from ``NgModelFormMixin`` and *afterward* fro
 
 	from django import forms
 	from djng.forms import NgFormValidationMixin, NgModelFormMixin
-	
+
 	class MyValidatedForm(NgModelFormMixin, NgFormValidationMixin, forms.Form):
 	    # custom form fields
 
@@ -253,7 +253,7 @@ initialize the form instance with
 
 	class MyErrorList(list):
 	    # rendering methods go here
-	
+
 	# during form instantiation
 	my_form = MyForm(error_class=MyErrorList)
 
@@ -271,7 +271,7 @@ controlled by the form's definition on the server. One such example is Django's 
 .. code-block:: python
 
 	from django import forms
-	
+
 	class MyForm(forms.Form):
 	    # other fields
 	    date = forms.DateField(label='Date',
